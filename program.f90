@@ -411,7 +411,7 @@ SUBROUTINE SolverNavierStokes(ni, nj, s_max, dx, dy, mu, eps, u_0, rho_0, u, v, 
                 u(i,j) = u(i,j) - dt / rho(i,j) * ((u_hat_right * u_right * rho_right - u_hat_left * u_left * rho_left) / dx &
                     + (v_hat_top * u_top * rho_top - v_hat_bot * u_bot * rho_bot) / dy &
                     + (p_right - p_left) / dx &
-                    ! - 4D0 / 3D0 * mu * (u(i + 1, j) - 2D0 * u(i,j) + u(i - 1, j)) / dx ** 2 &
+                    - 4D0 / 3D0 * mu * (u(i + 1, j) - 2D0 * u(i,j) + u(i - 1, j)) / dx ** 2 &
                     - mu * (u(i, j + 1) - 2D0 * u(i,j) + u(i, j - 1)) / dy ** 2) 
 
                 ! WRITE(*,*) 'u'
@@ -421,7 +421,7 @@ SUBROUTINE SolverNavierStokes(ni, nj, s_max, dx, dy, mu, eps, u_0, rho_0, u, v, 
                     + (v_hat_top * v_top * rho_top - v_hat_bot * v_bot * rho_bot) / dy &
                     + (p_top - p_bot) / dy &
                     - mu * (v(i, j + 1) - 2D0 * v(i,j) + v(i, j - 1)) / dy ** 2) 
-                    ! - 4D0 / 3D0 * mu * (v(i + 1, j) - 2D0 * v(i,j) + v(i - 1, j)) / dx ** 2)
+                    - 4D0 / 3D0 * mu * (v(i + 1, j) - 2D0 * v(i,j) + v(i - 1, j)) / dx ** 2)
 
                 rho(i,j) = DensityPressureCoupling(c, p(i,j), gamma)
                 ! WRITE(*,*) 'i, j, rho, p, u, v'
